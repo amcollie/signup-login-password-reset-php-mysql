@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"
+    />
+  </head>
+  <body>
+    <h1>Registration</h1>
+    <form
+      id="registration-form"
+      action="process-registration.php"
+      method="post"
+    >
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" />
+      </div>
+      <div>
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" />
+      </div>
+      <button type="submit" value="Register">Register</button>
+    </form>
+  </body>
+  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  <script src="assets/js/validation.js"></script>
+</html>

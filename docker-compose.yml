@@ -1,0 +1,47 @@
+version: '3'
+services:
+  web:
+    image: httpd:alpine
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./apache2/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./www:/var/www
+
+  app:
+    build:
+      context: php
+      dockerfile: Dockerfile
+      args:
+        APP_ENV: development
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    volumes:
+      - ./www:/var/www
+    depends_on:
+      - web
+      - db
+    env_file:
+      - .env
+  db:
+    image: mariadb:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - mysqldata:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  dbadmin:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+volumes:
+  mysqldata: {}
